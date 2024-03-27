@@ -1,0 +1,40 @@
+<!doctype html>
+<html style="height:100%">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{% block title %}{% endblock %} * APP * </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='fav') }}"/>
+</head>
+
+
+<!--<nav style="background-color:DarkBlue;">-->
+<!--  <h2 style="background-color:GreenYellow;"><a href="{{ url_for('index') }}">Poznajmy polskie zabytki</a></h2>-->
+<!--</nav>-->
+
+<!-- Tutaj 'nav' nie jest potrzebny.-->
+
+
+<body style="height:100%">
+
+
+<nav style="background-color:DarkBlue;">
+  <h2 style="background-color:GreenYellow;">Poznajmy polskie zabytki</h2>
+</nav>
+
+
+<section class="content">
+<header>
+    {% block header %}{% endblock %}
+</header>
+  {% block header_ext %}{% endblock %}
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
+</body>
+
+</html>
