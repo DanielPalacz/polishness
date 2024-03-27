@@ -1,4 +1,6 @@
 
+# TESTS
+
 
 ## Tests Monuments
 
@@ -9,20 +11,7 @@
 PYTHONPATH=. pytest -s -vv tests/monuments/
 ```
 
-### 1. DB tests
+### 2. DB tests
 ```
 PYTHONPATH=. pytest -s -vv tests/monuments/db/
-
 ```
-
-
-
-
-## Test technics/tools
-```
--
-```
-
-
-
-
