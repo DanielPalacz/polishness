@@ -32,7 +32,6 @@ def wyszukaj():
         return "Problem po stronie aplikacji. Właśnie powiadomiono administratora o zdarzeniu.", 200
 
     _items = [tuple([elem if elem is not None else "" for elem in t_elem]) for t_elem in items]
-
     return render_template("search.html", city=city, params=params, items=_items, quantity=len(items))
 
 
@@ -41,12 +40,13 @@ def wycieczka():
     query_params = get_query_params()
     city, parish, county, keyword, voivodeship, quantity = query_params.values()
 
-    print("1 - wycieczka_endpoint")
+    print("1a - wycieczka_endpoint")
 
     if not any([city, parish, county, keyword, voivodeship]):
+        print("1b - wycieczka_endpoint")
         return render_template('generate_main.html')
 
-    print("2 - wycieczka_endpoint")
+    print("2a - wycieczka_endpoint")
 
     params = [": ".join(x) for x in
               [
@@ -63,7 +63,7 @@ def wycieczka():
     print(params)
     print("3 - wycieczka_endpoint")
 
-    return render_template("search.html", city=city, params=params, items=items, quantity=len(items))
+    return render_template("generate.html", city=city, params=params, items=items, quantity=len(items))
 
 
 def __wyszukaj() -> Union[list[tuple], str, tuple]:
