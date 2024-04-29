@@ -35,37 +35,6 @@ def wyszukaj():
     return render_template("search.html", city=city, params=params, items=_items, quantity=len(items))
 
 
-@monuments_bp.route('/wycieczka/')
-def wycieczka():
-    query_params = get_query_params()
-    city, parish, county, keyword, voivodeship, quantity = query_params.values()
-
-    print("1a - wycieczka_endpoint")
-
-    if not any([city, parish, county, keyword, voivodeship]):
-        print("1b - wycieczka_endpoint")
-        return render_template('generate_main.html')
-
-    print("2a - wycieczka_endpoint")
-
-    params = [": ".join(x) for x in
-              [
-                  ["miejscowość", city], ["gmina", parish], ["powiat", county],
-                  ["klucz", keyword], ["wojewodztwo", voivodeship], ["quantity", quantity]] if x[1]
-              ]
-    try:
-        items = generate_trip(**query_params)
-    except OperationalError:
-        return "Problem po stronie aplikacji. Właśnie powiadomiono administratora o zdarzeniu.", 200
-
-
-    #
-    print(params)
-    print("3 - wycieczka_endpoint")
-
-    return render_template("generate.html", city=city, params=params, items=items, quantity=len(items))
-
-
 def __wyszukaj() -> Union[list[tuple], str, tuple]:
     query_params = get_query_params()
     city, parish, county, keyword, voivodeship, quantity = query_params.values()
