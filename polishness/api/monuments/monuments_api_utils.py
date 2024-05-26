@@ -7,7 +7,6 @@ from polishness.libs.sql.sqlite import open_sqlite
 
 
 def search_monuments(city: str = "", parish: str = "", county: str = "", keyword="", voivodeship="", quantity=None) -> list[tuple]:
-    print("generate_trip 1...")
 
     with current_app.app_context():
         db_location = current_app.static_folder + '/' + DEFAULT_MONUMENTS_DATABASE

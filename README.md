@@ -75,3 +75,14 @@ python3.10 -m venv venv; source venv/bin/activate; pip install -r polishness/req
 ```
 python3.9 -m venv venv; source venv/bin/activate; pip install -r polishness/requirements.txt; PYTHONPATH=. python polishness/api/monuments/monuments_tools.py; PYTHONPATH=. python polishness/app.py
 ```
+
+### run gunicorn proxy
+```
+PYTHONPATH=.. gunicorn --bind 0.0.0.0:8000 wsgi:app &
+```
+
+### setup ngnix conf (unlink default conf)
+```
+/etc/nginx/sites-available/polishness.conf
+sudo ln -s /etc/nginx/sites-available/polishness.conf /etc/nginx/sites-enabled/
+```
